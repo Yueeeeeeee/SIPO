@@ -1,0 +1,44 @@
+# Core dependencies for SIPO.
+# Install vLLM 0.12.0 and then flash-attn separately, as described in README.md.
+
+accelerate==1.12.0
+codetiming==1.4.0
+datasets==4.4.2
+dill==0.4.0
+hydra-core==1.3.2
+liger-kernel  # Optional: kernel optimizations
+numpy==2.1.0
+pandas==2.3.3
+peft==0.18.0
+pyarrow==22.0.0
+pybind11==3.0.1
+pylatexenc==2.10
+pre-commit  # Dev tool
+ray[default]==2.53.0
+# Ray 2.53's dashboard *agent* imports opentelemetry-exporter-prometheus. The otel
+# `0.NNbX` packages are released in lockstep with the `1.NN.X` ones, so a mismatched pair
+# (which pip can produce when vllm is installed afterwards) fails with
+#   ImportError: cannot import name 'OtelComponentTypeValues'
+#       from 'opentelemetry.semconv._incubating.attributes.otel_attributes'
+# The agent then dies, the raylet follows, and every run ends in
+#   Failed to register worker to Raylet: IOError: ... End of file
+# Pin the matched set.
+opentelemetry-api==1.39.1
+opentelemetry-sdk==1.39.1
+opentelemetry-proto==1.39.1
+opentelemetry-semantic-conventions==0.60b1
+opentelemetry-exporter-prometheus==0.60b1
+tensordict==0.10.0
+torchdata==0.11.0
+transformers==4.57.1
+wandb==0.23.1
+packaging==25.0
+uvicorn==0.40.0
+fastapi==0.127.0
+latex2sympy2_extended==1.10.2
+math-verify[antlr4_9_3]==0.8.0
+tensorboard==2.20.0
+word2number==1.1
+latex2sympy2==1.5.4
+pyzmq==27.1.0
+psutil==7.1.3
